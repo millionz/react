@@ -1,26 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import tool from '../Tool';
 
+import '../assets/scss/index.scss'
+
 class Index extends React.Component{
+  constructor(){
+		super();
+		this.state = {
+			listData : []
+		};
+	}
+
   componentDidMount(){
-
-    console.log( tool );
-
-    tool.fetch( 'https://ggfe.herokuapp.com/interview/cart.json' , {
-      method : 'get'
-    },{
-      'Content-type' : 'application/x-www-form-urlencoded; charset=UTF-8'
-    }).then( res => {
-      console.log( res )
+    tool.get( 'https://ggfe.herokuapp.com/interview/cart.json' ).then( res => {
+      this.setState({ 'listData' : res });
     })
   }
 
   render(){
-      return (
-        <div>这是index页</div>
-      );
+    let list = this.state.listData.map(( item , index ) => {
+      return <li className="item" key={index}><img src={ item.dealImg}/><span className="name">{ item.dealTitle }</span></li>
+    })
+    return (
+      <div className="p-index">
+        <div className="m-foodList">{ list }</div>
+      </div>
+    );
   }
+
+
 }
 export default Index;

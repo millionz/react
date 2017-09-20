@@ -7,6 +7,8 @@ import order from './view/order';
 import my from './view/my';
 import Mainnav from './components/nav';
 
+import './assets/scss/_reset.scss'
+import './assets/scss/_components.scss'
 
 class App extends React.Component{
     render(){

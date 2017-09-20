@@ -24,10 +24,8 @@ module.exports = {
     historyApiFallback: true,//不跳转
     inline: true//实时刷新
   },
-
-
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: [ '' , '.js' , '.jsx' , '.scss']
   },
   module: {
     loaders: [
@@ -56,5 +54,8 @@ module.exports = {
       test: /\.jpg$/,
       loader: 'url-loader?mimetype=image/jpg'
     }]
-  }
+  },
+  plugins: [
+    
+  ]
 };

@@ -2,13 +2,11 @@
   "name": "millionz-react",
   "version": "1.0.0",
   "description": "react-react",
-  "main": "index.html",
   "scripts": {
-    "dev": "node server.js",
-    "hot": "node server_hot.js",
-    "dist": "webpack --config webpack.config.dist.js --progress --colors --watch -p"
+    "dev" : "webpack-dev-server --devtool eval-source-map --progress --colors --content-base ./dist",
+    "build": "webpack"
   },
-  "author": "",
+  "author": "millionz",
   "dependencies": {
     "github-markdown-css": "^2.4.0",
     "immutable": "^3.8.1",
@@ -23,13 +21,9 @@
     "redux-immutablejs": "^0.0.8",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
-
-
     "es6-promise": "^4.1.1",
     "isomorphic-fetch": "^2.2.1",
     "whatwg-fetch": "^2.0.3"
-
-
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",

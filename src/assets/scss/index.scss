@@ -1,0 +1,15 @@
+@charset "UTF-8";
+@import "_variable_method";
+.p-index{
+  .m-foodList{
+    .item{
+      padding-left: 40px;
+      line-height: 80px;
+      border-bottom: 1px solid $Border;
+      &:hover{
+        cursor: pointer;
+        background: $Background;
+      }
+    }
+  }
+}

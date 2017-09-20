@@ -1,6 +1,12 @@
 import fetch from 'isomorphic-fetch'
 require('es6-promise').polyfill();
 class Tool {
+  get( url='' , option={} ){
+    return this.fetch( 'GET' , url + this.formatParameter(option) )
+  }
+  post( url='' , option={} ){
+    return this.fetch( 'POST' , url , option )
+  }
   formatParameter( obj ){
     if( JSON.stringify( obj ) == '{}' ) return '';
     let parameter = '?';
@@ -9,24 +15,24 @@ class Tool {
     }
     return parameter.replace( /&$/g , '' );
   }
-  fetch( _url , _option , headers ){
-    let url = _url;
-    let method = toLocaleUpperCase( _option.method ) || 'GET';
-    let header = '';
-    let option = _option;
-    if( method == 'GET' ) url += this.formatParameter( _option );
-    if( method == 'POST' ) option = JSON.stringify( option );
-    if( headers !== undefined ){
-      header = new Headers();
-      for( let v in headers ){
-         header.append( v , headers[v] );
-       }
+  fetch( type='GET' , url='' , option={} ){
+    let _fetch = false;
+    switch( type ){
+      case 'GET':
+        _fetch = fetch( url )
+        break;
+      case 'POST':
+        _fetch = fetch( url , {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify( option )
+        })
+        break;
     }
-    return fetch( url , {
-      method : method,
-      header : header,
-      body : option
-    })
+    return _fetch.then( res => res.json() );
   }
 }
 export default new Tool();

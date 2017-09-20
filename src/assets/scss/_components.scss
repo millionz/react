@@ -1,0 +1,28 @@
+//公共(组件)模块样式
+@charset "UTF-8";
+@import "_variable_method";
+
+//底部主导航
+.m-mainNav{
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid $Border;
+  .item{
+    flex: 1;
+    line-height: 60px;
+    text-align: center;
+    text-decoration: none;
+    color: $Content;
+    &:hover{
+      background: $Background;
+      cursor: pointer;
+    }
+    &:nth-child(2){
+      border-left: .5px solid $Border;
+      border-right: 1px solid $Border;
+    }
+  }
+}
