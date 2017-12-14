@@ -18,15 +18,15 @@ class Tool {
   fetch( type='GET' , url='' , option={} ){
     let _fetch = false;
     switch( type ){
-      case 'GET':
+      case 'GET' :
         _fetch = fetch( url )
         break;
-      case 'POST':
+      case 'POST' :
         _fetch = fetch( url , {
-          method: 'POST',
+          method : 'POST',
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
           },
           body: JSON.stringify( option )
         })
