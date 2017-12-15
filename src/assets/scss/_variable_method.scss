@@ -6,7 +6,6 @@
 $Primary: #2d8cf0;
 $LightPrimary: #5cadff;
 $DarkPrimary: #2b85e4;
-$Primary: #2d8cf0;
 
 //辅助色( 辅助色是具有代表性的颜色，常用于信息提示，比如成功、警告和失败。)
 $Info: #2d8cf0;
@@ -15,12 +14,20 @@ $Warning: #ff9900;
 $Error: #ed3f14;
 
 //中性色( 包括：标题 、正文 、辅助/图标、失效、边框、分割线、背景 )
-$Title: #1c2438;
+$Title: #292929;
 $Content: #495060;
 $SubColor: #80848f;
 $Disabled: #bbbec4;
-$Border: #dddee1;
+$Border: #e8e8e8;
 $Divider: #e9eaec;
 $Background: #f8f8f9;
 
-  
+
+//距离
+$space: 10px;
+@mixin space(){  //左右留白
+  padding: {
+    left: $space;
+    right: $space;
+  }
+}

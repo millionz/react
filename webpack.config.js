@@ -65,7 +65,8 @@ module.exports = {
     //复制文件，把src文件搬到dist目录
     new CopyWebpackPlugin([
       { from : path.resolve( APP_PATH , 'index.html' ) , to : BUILD_PATH },
-      { from : path.resolve( APP_PATH , 'assets/img' ) , to : path.resolve( BUILD_PATH , 'assets/img' ) }
+      { from : path.resolve( APP_PATH , 'assets/img' ) , to : path.resolve( BUILD_PATH , 'assets/img' ) },
+      { from : path.resolve( APP_PATH , 'assets/json' ) , to : path.resolve( BUILD_PATH , 'assets/json' ) }
     ]),
     new webpack.HotModuleReplacementPlugin()
   ],

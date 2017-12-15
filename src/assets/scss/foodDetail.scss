@@ -1,0 +1,57 @@
+@charset "UTF-8";
+@import "_variable_method";
+.p-foodDetail{
+  .m-backLastPageBtn{
+    position: absolute;
+    top: 10px;
+    left: 0;
+    color: #fff;
+  }
+  .m-foodDetail{
+    .food-pic{ max-width: 100%; }
+    .m-foodDetail-baseInfo{
+      @include space;
+      padding-top: 15px;
+      .name{
+        margin-right: 15px;
+        font-size: 20px;
+        color: $Title;
+      }
+      .price{
+        margin-right: 15px;
+        color: $Primary;
+        &:before{
+          content: '￥';
+        }
+      }
+      .number{
+        float: right;
+        color: $SubColor;
+        &:before{
+          content: '已售';
+        }
+        &:after{
+          content: '份';
+        }
+      }
+      .explain{
+        margin-top: 10px;
+        color: $Content;
+      }
+    }
+    .m-foodDetail-detailedInfo{
+      @include space;
+      padding-top: 10px;
+      line-height: 18px;
+      &:before{
+        content: '菜品描述';
+        display: block;
+        font-size: 16px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        color: $SubColor;
+      }
+    }
+  }
+
+}

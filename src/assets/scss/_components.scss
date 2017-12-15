@@ -2,14 +2,21 @@
 @charset "UTF-8";
 @import "_variable_method";
 
+.cp-pageWrap{
+  position: absolute;
+  padding-bottom: 60px;
+}
+
 //底部主导航
 .m-mainNav{
+  z-index: 1;
   display: flex;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   border-top: 1px solid $Border;
+  background: #fff;
   .item{
     flex: 1;
     line-height: 60px;
@@ -25,4 +32,11 @@
       border-right: 1px solid $Border;
     }
   }
+}
+
+
+//返回上一页
+.m-backLastPageBtn{
+  display: inline-block;
+  padding: 10px;
 }

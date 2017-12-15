@@ -3,12 +3,30 @@
 .p-index{
   .m-foodList{
     .item{
-      padding-left: 40px;
-      line-height: 80px;
-      border-bottom: 1px solid $Border;
-      &:hover{
-        cursor: pointer;
-        background: $Background;
+      margin-bottom: 40px;
+      text-align: center;
+      overflow: hidden;
+      img{
+        float: left;
+        width: 100%;
+      }
+      .info-wrap{
+        @include space;
+        padding-top: $space;
+        text-align: left;
+        overflow: hidden;
+        .name{
+          margin-right: 5px;
+          font-size: 17px;
+          color: $Title;
+        }
+        .price{
+          color: $Primary;
+        }
+        .explain{
+          margin-top: 5px;
+          color: $SubColor;
+        }
       }
     }
   }

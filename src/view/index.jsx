@@ -1,55 +1,64 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import tool from '../Tool';
-import { listData } from '../assets/json/cart'
+import { Link } from 'react-router-dom';
+
 import '../assets/scss/index.scss'
 
 class Index extends React.Component{
-  constructor(){
-		super();
-		this.state = {
-			listData : []
-		};
-	}
 
-  componentDidMount(){
 
+  componentWillMount(){
+    console.log( this );
+    this.state = {
+      listData : []
+    }
     let listData = [
       {
-        'dealId' : 1,
-        'dealType' : 1,
-        'dealTimeType' : 1,
-        'dealImg' : './assets/img/a.jpg',
-        'dealTitle' : '好吃的菜菜',
-        'dealPrice' : '288.00',
-        'dealNum' : 10,
-        'dealDetail' : '芋头:5:5-海带:3:8-藕:2:10',
-        'dealStar' : 5,
-        'dealSell' :  312
+        'id' : 1,
+        'type' : 1,
+        'img' : './assets/img/1.png',
+        'title' : '蒜蓉小龙虾',
+        'price' : '288.00',
+        'num' : 10,
+        'explain' : '秘制调料，麻辣鲜香。虾肉Q弹饱满，瞬间唤醒食欲！',
       },
       {
-        'dealId' : 2,
-        'dealType' : 2,
-        'dealTimeType' : 2,
-        'dealImg' : './assets/img/b.jpg',
-        'dealTitle' : '好吃的饭',
-        'dealPrice' : '688.00',
-        'dealNum' : 10,
-        'dealDetail' : '牛肉:1:3',
-        'dealStar' : 5,
-        'dealSell' :  112
+        'id' : 2,
+        'type' : 2,
+        'img' : './assets/img/2.png',
+        'title' : '香辣鸡丁',
+        'price' : '62.00',
+        'num' : 3,
+        'explain' : '肉质鲜嫩，香辣入味，吃货的天堂。'
+      },
+      {
+        'id' : 3,
+        'type' : 3,
+        'img' : './assets/img/3.png',
+        'title' : '葩猪蹄',
+        'price' : '122.00',
+        'num' : 99,
+        'explain' : '精选的上好农家猪蹄，鲜香麻辣，原汁醇厚，耙糯不腻。'
       }
     ];
     this.setState({ 'listData' : listData });
-    // console.log( listData );
-    // tool.get( 'https://ggfe.herokuapp.com/interview/cart.json' ).then( res => {
-    //   this.setState({ 'listData' : res });
-    // })
   }
 
   render(){
     let list = this.state.listData.map(( item , index ) => {
-      return <li className="item" key={ index }><img src={ item.dealImg }/><span className="name">{ item.dealTitle }</span></li>
+      return (
+        <li className="item" key={ index }>
+          <Link to={ '/foodDetail/' + item.id }>
+            <img src={ item.img }/>
+            <div className="info-wrap">
+              <span className="name">{ item.title }</span>
+              <span className="price">￥{ item.price }</span>
+              <p className="explain">{ item.explain }</p>
+            </div>
+          </Link>
+        </li>
+      )
     })
     return (
       <div className="p-index">

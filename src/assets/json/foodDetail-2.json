@@ -1,0 +1,23 @@
+{
+"id" : 2,
+"type" : 2,
+"img" : "./assets/img/2.png",
+"title" : "香辣鸡丁",
+"price" : "62.00",
+"num" : 3,
+"explain" : "肉质鲜嫩，香辣入味，吃货的天堂。",
+"desc" : "〖麻辣〗尖椒鸡菜x1米饭x1时蔬x2可乐x1",
+"detail" : "<p>〖产品介绍〗传说吃了香辣鸡丁，成功几率上升50%哟</p><p>〖包装规格〗2人份量，单品，需要米饭，请单点哟！</p>",
+"activity" : {
+  "activityTag" : "特价",
+  "discountWay" : "price",
+  "discountRatio" : 7.96,
+  "activityPrice" : 78,
+  "saleCount" : 100,
+  "startDate" : "2017-11-25 00:00",
+  "endDate" : "2018-03-02 23:59",
+  "description" : "送福利",
+  "showFullDate" : "11月25日-3月02日 00:00-23:59",
+  "text" : "每单限100份优惠"
+  }
+}
