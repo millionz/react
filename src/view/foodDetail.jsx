@@ -8,6 +8,7 @@ import '../assets/scss/foodDetail.scss'
 class FoodDetail extends React.Component{
     constructor( props ){
       super( props );
+      console.log( this );
       this.state = {
           id : this.props.match.params.id,
           detailData : {}
@@ -36,7 +37,7 @@ class FoodDetail extends React.Component{
             <span className="number">{ detailData.num }</span>
             <p className="explain">{ detailData.explain }</p>
           </div>
-          <div className="m-foodDetail-detailedInfo" dangerouslySetInnerHTML={{ __html: detailData.detail }}></div>
+          <div className="m-foodDetail-detailedInfo" dangerouslySetInnerHTML={{ __html : detailData.detail }}></div>
         </div>
       )
       return (

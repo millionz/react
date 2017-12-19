@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import '../assets/scss/index.scss'
 
 class Index extends React.Component{
-
-
+  constructor( props ){
+    super( props );
+  }
   componentWillMount(){
-    console.log( this );
     this.state = {
       listData : []
     }

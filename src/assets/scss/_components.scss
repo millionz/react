@@ -3,8 +3,12 @@
 @import "_variable_method";
 
 .cp-pageWrap{
-  position: absolute;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
   padding-bottom: 60px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 //底部主导航
