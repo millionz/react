@@ -8,7 +8,6 @@ import '../assets/scss/foodDetail.scss'
 class FoodDetail extends React.Component{
     constructor( props ){
       super( props );
-      console.log( this );
       this.state = {
           id : this.props.match.params.id,
           detailData : {}

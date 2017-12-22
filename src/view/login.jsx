@@ -5,7 +5,6 @@ import '../assets/scss/login.scss'
 class Login extends React.Component{
   constructor( props ){
     super( props );
-    console.log( this );
     this.xxxx = this.xxxx.bind( this );
   }
   xxxx(){
