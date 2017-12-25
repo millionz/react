@@ -9,8 +9,8 @@ class FoodDetail extends React.Component{
     constructor( props ){
       super( props );
       this.state = {
-          id : this.props.match.params.id,
-          detailData : {}
+        id : this.props.computedMatch.params.id,
+        detailData : {}
       };
     }
     componentWillMount(){ //在渲染之前调用一次

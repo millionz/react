@@ -3,39 +3,30 @@ import { HashRouter as Router , Route , Switch , Link , Redirect } from 'react-r
 
 import MainNav from './components/mainNav';
 
-import login from './view/login';
-import index from './view/index';
-import order from './view/order';
-import my from './view/my';
-import foodDetail from './view/foodDetail';
+import Login from './view/login';
+import Index from './view/index';
+import Order from './view/order';
+import My from './view/my';
+import FoodDetail from './view/foodDetail';
 
 
 class AppRouter extends React.Component{
   constructor( props ){
     super( props );
     this.mainNavConfig = [
-      { path : '/index' , component : index },
-      { path : '/login' , component : login },
-      { path : '/order' , component : order },
-      { path : '/my' , component : my },
-      { path : '/foodDetail/:id' , component : foodDetail },
+      { path : '/index' , component : <Index/> , name : 'index' },
+      { path : '/login' , component : <Login/> , name : 'login' , showNav : false },
+      { path : '/order' , component : <Order/> , name : 'order' },
+      { path : '/my' , component : <My/> , name : 'my' },
+      { path : '/foodDetail/:id' , component : <FoodDetail/> , name : 'foodDetail' },
     ];
     this.getUserInfo = this.getUserInfo.bind( this );
-    this.showMainNav = this.showMainNav.bind( this );
-    this.enterRoute = this.enterRoute.bind( this );
     this.xxxx = this.xxxx.bind( this );
   }
   xxxx(){
 
     //
 
-  }
-  enterRoute(){
-    console.log( 1 );
-  }
-  showMainNav( nowPath ){
-    console.log( nowPath )
-    return false;
   }
   getUserInfo(){
     let userName = 'millionz';
@@ -44,20 +35,20 @@ class AppRouter extends React.Component{
     return { userName , phone , sex }
   }
   render(){
-      let navList = this.mainNavConfig.map(( item , index ) => {
-        return ( <Route key={ index } path={ item.path } component={ item.component } onEnter={ this.enterRoute }/> )
+      let routeList = this.mainNavConfig.map(( item , index ) => {
+        let routeDom = (
+          <div className={ item.showNav !== undefined && !item.showNav ? 'g-pageWrap hideNav' : 'g-pageWrap' }>
+            <Switch>{ item.component }</Switch>
+            { item.showNav !== undefined && !item.showNav ? '' : <MainNav/> }
+          </div>
+        );
+        return ( <Route key={ index } path={ item.path } children={ routeDom }/> )
       })
       return(
         <Router>
-          <div className="g-pageWrap">
             <Switch>
-              <MainNav isShow={ this.showMainNav }/>
+              { routeList }
             </Switch>
-            <Switch>
-              <Route exact path="/" component={ index }/>
-              { navList }
-            </Switch>
-          </div>
         </Router>
       );
   }
