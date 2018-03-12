@@ -39,13 +39,14 @@ let action = dispatch => {
       nowPageData : { path : '/xxxx' , component : false , isExact : false , name : '默认页面' , reg : false }
     }
   }
+
   routerChange( location ){
     //利用Prompt组件监听到路由切换事件，再根据routerConfig配置信息中的正则来判断当前路由的位置，从而得到相应路由数据
     let routerData = false;
     this.state.routerConfig.forEach( item => {
       if( item.reg.test( location.pathname) ) routerData = Object.assign( item , { pathname : location.pathname });
     })
-    if( !routerData ) routerData = Object.assign( this.state.routerConfig[0] , { pathname : this.state.routerConfig[0].name });
+    if( !routerData ) return;
     this.props.updateNowPageData( routerData )
     this.setState({ 'nowPageData' : routerData });
   }
@@ -66,7 +67,7 @@ let action = dispatch => {
             <Route path="/" render={() => {
               return <Redirect to="/index"/>
             }} />
-          </Switch>
+            </Switch>
           <MainNav/>
         </div>
       </Router>

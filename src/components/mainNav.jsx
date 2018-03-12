@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class MainNav extends React.Component{
@@ -15,7 +16,7 @@ class MainNav extends React.Component{
   }
   render(){
     let NavLinkDom = this.state.NavConfig.map( item => {
-      return( <Link key={ item.name } className="item" to={ item.link}>{ item.name }</Link> )
+      return( <Link key={ item.name } className="item" to={ item.link} >{ item.name }</Link> )
     })
     let navDom = (
       <div className="m-mainNav">{ NavLinkDom }</div>
@@ -25,4 +26,4 @@ class MainNav extends React.Component{
 }
 
 
-export default MainNav;
+export default connect( state => state )( MainNav );
