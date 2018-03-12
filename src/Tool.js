@@ -1,38 +1,67 @@
-import fetch from 'isomorphic-fetch'
-require('es6-promise').polyfill();
+/*
+  模块名称 : Tool
+  说明 : 工具类，包含功能：数据类型判断、对象转成URL参数字符串、AJAX
+  使用方法 :
+  import Tool from '@/Tool'
+  Tool.方法名称 ，例如 Tool.get( param )
+*/
+
 class Tool {
-  get( url='' , option={} ){
-    return this.fetch( 'GET' , url + this.formatParameter(option) )
+  constructor( param ){
+    this.param = param;
   }
-  post( url='' , option={} ){
-    return this.fetch( 'POST' , url , option )
+  typeJudge( type , param ){
+    let typeString = Object.prototype.toString.call( param );
+    typeString = typeString.split(' ')[1].replace( ']' , '' );
+    return typeString == type;
   }
-  formatParameter( obj ){
-    if( JSON.stringify( obj ) == '{}' ) return '';
-    let parameter = '?';
+  isObject( param ){
+    return this.typeJudge( 'Object' , param );
+  }
+  isArray( param ){
+    return this.typeJudge( 'Array' , param );
+  }
+  isNumber( param ){
+    return this.typeJudge( 'Number' , param );
+  }
+  isString( param ){
+    return this.typeJudge( 'String' , param );
+  }
+  isBoolean( param ){
+    return this.typeJudge( 'Boolean' , param );
+  }
+  getURLparamFromObj( obj ){
+    if( !this.isObject(obj) ) return '';
+    let str = '?'
     for( let x in obj ){
-      parameter += x + '=' + obj[x] + '&';
+      str += x + '=' + obj[x] + '&'
     }
-    return parameter.replace( /&$/g , '' );
+    return str.replace( /&$/g , '' );
   }
-  fetch( type='GET' , url='' , option={} ){
-    let _fetch = false;
-    switch( type ){
-      case 'GET' :
-        _fetch = fetch( url )
-        break;
-      case 'POST' :
-        _fetch = fetch( url , {
-          method : 'POST',
-          headers: {
-            'Accept' : 'application/json',
-            'Content-Type' : 'application/json'
-          },
-          body: JSON.stringify( option )
-        })
-        break;
-    }
-    return _fetch.then( res => res.json() );
+  ajax( type , url , param ){
+    return new Promise(( resolve, reject ) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open( type , url , false )
+      xhr.addEventListener( 'load' , res => {
+        let status = xhr.status;
+        if( (status >= 200 && status < 300) || xhr.status == 304 ){
+          let result = xhr.responseText;
+          if( JSON.parse(result) ) result = JSON.parse(result);
+          resolve( result , this )
+        }else{
+          reject({ status : status , error : xhr.responseText })
+        }
+      })
+      xhr.send( null )
+    })
+  }
+  get( url , param ){
+    let _url = url;
+    if( param ) _url += this.getURLparamFromObj( param );
+    return this.ajax( 'GET' , _url );
+  }
+  post( url , param ){
+    return this.ajax( 'POST' , url , param );
   }
 }
 export default new Tool();

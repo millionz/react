@@ -1,18 +1,17 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import { HashRouter } from 'react-router-dom';
-import AppRouter from './router';
+import ReactDOM from 'react-dom';
+import AppRouter from './router.jsx';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
+import '@/assets/scss/_reset'
+import '@/assets/scss/_components'
+import '@/assets/scss/_common'
 
-
-import MainNav from './components/mainNav';
-
-import './assets/scss/_reset.scss'
-import './assets/scss/_components.scss'
-
-ReactDom.render(
-  <AppRouter/>,
+ReactDOM.render(
+  <Provider store={store}>
+    <AppRouter/>
+  </Provider>,
   document.getElementById('app')
 );
-
 
 if( module.hot ) module.hot.accept();

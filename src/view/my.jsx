@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class My extends React.Component{
-    render(){
-        return (
-          <div>这是my页</div>
-        );
-    }
+  constructor( props ){
+    super( props );
+  }
+  componentWillMount(){}
+  render(){
+    return (
+      <div className="p-my">
+        个人主页
+      </div>
+    );
+  }
 }
+
 export default My;

@@ -1,23 +1,27 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-class MainNav extends React.Component{
-    constructor( props ){
-      super( props );
-      console.log( this );
-    }
-    componentWillMount(){
+import { Link } from 'react-router-dom';
 
-    }
-    render(){
-      let navDom = (
-        <div className="m-mainNav ">
-          <NavLink to="/index" activeClassName="active" className="item">主页</NavLink>
-          <NavLink to="/order" activeClassName="active" className="item">订单</NavLink>
-          <NavLink to="/my" activeClassName="active" className="item">我的</NavLink>
-        </div>
-      )
-      return navDom;
-    }
+class MainNav extends React.Component{
+  constructor( props ){
+    super( props );
+  }
+  componentWillMount(){
+    let NavConfig = [
+      { link : '/index' , name : '主页' },
+      { link : '/order' , name : '订单' },
+      { link : '/my' , name : '我的' }
+    ]
+    this.setState({ 'NavConfig' : NavConfig })
+  }
+  render(){
+    let NavLinkDom = this.state.NavConfig.map( item => {
+      return( <Link key={ item.name } className="item" to={ item.link}>{ item.name }</Link> )
+    })
+    let navDom = (
+      <div className="m-mainNav">{ NavLinkDom }</div>
+    )
+    return navDom;
+  }
 }
 
 

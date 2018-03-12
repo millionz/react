@@ -3,14 +3,17 @@
 @import "_variable_method";
 
 .g-pageWrap{
-  position: relative;
+  position: absolute;
   width: 100%;
-  max-width: 500px;
+  min-height: 100%;
   padding-bottom: 60px;
   margin-left: auto;
   margin-right: auto;
   &.hideNav{
     padding-bottom: 0;
+  }
+  >div:not(.m-mainNav){
+    min-height: 100%;
   }
 }
 
@@ -43,7 +46,21 @@
 
 
 //返回上一页
-.m-backLastPageBtn{
+.m-mainHeader{
   display: inline-block;
-  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  line-height: $mainHeaderHeight;
+  background: #fff;
+  .m-backLastPageBtn{
+    position: absolute;
+    top: 0;
+    left: $space;
+    line-height: 35px;
+  }
+  .m-pageTitle{
+    text-align: center;
+  }
 }

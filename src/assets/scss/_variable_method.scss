@@ -25,6 +25,7 @@ $Background: #f8f8f9;
 
 //距离
 $space: 10px;
+$mainHeaderHeight: 35px;
 @mixin space(){  //左右留白
   padding: {
     left: $space;

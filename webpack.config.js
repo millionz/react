@@ -26,10 +26,10 @@ module.exports = {
     // root : 'xxxxxx',
 
     //自动扩展文件后缀名，意味着我们require模块可以省略不写后缀名
-    extensions : [ '' , '.js' , '.jsx' , '.scss' ]
+    extensions : [ '' , '.js' , '.jsx' , '.scss' ],
 
     //模块别名定义，方便后续直接引用别名，无须多写长长的地址
-    // alias : { xxx : 'xxxx/xxxx/xxx' }
+    alias : { '@' : APP_PATH }
 
   },
   module : {

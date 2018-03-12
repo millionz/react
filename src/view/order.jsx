@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Order extends React.Component{
-    render(){
-        return (
-          <div>这是order页</div>
-        );
-    }
+  constructor( props ){
+    super( props );
+  }
+  componentWillMount(){}
+  render(){
+    return (
+      <div className="p-order">
+        订单页
+      </div>
+    );
+  }
 }
+
 export default Order;

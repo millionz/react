@@ -1,24 +1,19 @@
-import React from 'react';
-import '../assets/scss/login.scss'
 
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 class Login extends React.Component{
   constructor( props ){
     super( props );
-    this.xxxx = this.xxxx.bind( this );
   }
-  xxxx(){
-
-  }
+  componentWillMount(){}
   render(){
-      return (
-        <div className="p-login">
-
-
-
-
-        </div>
-      );
+    return (
+      <div className="p-login">
+        登录页
+      </div>
+    );
   }
 }
+
 export default Login;
