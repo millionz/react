@@ -2,19 +2,21 @@
   "name": "millionz-react",
   "version": "1.0.0",
   "description": "react-react",
+  "author": "millionz",
   "scripts": {
     "start": "node server.js",
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "webpack"
   },
-  "author": "millionz",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^6.4.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
+    "babel-preset-stage-3": "^6.24.1",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.7",
     "es6-promise": "^4.1.1",

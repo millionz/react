@@ -7,6 +7,7 @@ $Primary: #2d8cf0;
 $LightPrimary: #5cadff;
 $DarkPrimary: #2b85e4;
 
+
 //辅助色( 辅助色是具有代表性的颜色，常用于信息提示，比如成功、警告和失败。)
 $Info: #2d8cf0;
 $Success: #19be6b;
@@ -15,6 +16,7 @@ $Error: #ed3f14;
 
 //中性色( 包括：标题 、正文 、辅助/图标、失效、边框、分割线、背景 )
 $Title: #292929;
+$Button: #409eff;
 $Content: #495060;
 $SubColor: #80848f;
 $Disabled: #bbbec4;
@@ -26,9 +28,20 @@ $Background: #f8f8f9;
 //距离
 $space: 10px;
 $mainHeaderHeight: 35px;
+$mainNavHeight: 60px;
 @mixin space(){  //左右留白
   padding: {
     left: $space;
     right: $space;
+  }
+}
+
+@mixin clearfix(){
+  &:after{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
   }
 }

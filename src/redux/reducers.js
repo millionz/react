@@ -7,7 +7,6 @@ export default ( state = initState , action ) => {
   switch( action.type ){
 
     case 'UPDATE_NOWPAGE':
-
       Object.assign( state.nowPage , action.data )
       return { nowPage : state.nowPage };
 

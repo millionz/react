@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Prompt , Redirect } from 'react-router'
 import { HashRouter as Router , Route , Link , Switch  } from 'react-router-dom'
 import MainNav from './components/mainNav'
-import MainHeader from './components/MainHeader'
+import MainHeader from './components/mainHeader'
+import ShopingCar from './components/shopingCar'
 import Login from './view/login'
 import Index from './view/index'
 import Order from './view/order'
@@ -29,6 +30,11 @@ let action = dispatch => {
     super( props );
     this.routerChange = this.routerChange.bind( this );
     this.state = {
+      /*
+        【参数说明】
+        path:路由地址：component:此路由对应组件：isExact:是否为默认路由：name:页面名称：
+        reg:匹配路由的正则，路由改变时会以此正则来匹配对应路由数据
+      */
       routerConfig : [
         { path : '/index' , component : Index , isExact : true , name : '首页' , reg : /^\/index$/g },
         { path : '/login' , component : Login , isExact : false , name : '登录页' , reg : /^\/login/g },
@@ -40,11 +46,22 @@ let action = dispatch => {
     }
   }
 
+  componentWillMount(){
+    console.log( this )
+    this.routerChange()
+  }
+
   routerChange( location ){
     //利用Prompt组件监听到路由切换事件，再根据routerConfig配置信息中的正则来判断当前路由的位置，从而得到相应路由数据
     let routerData = false;
+
+    let _location = location == undefined ? {
+      pathname : window.location.hash.replace( '#' , '' )
+    } : location;
+
+    console.log( _location )
     this.state.routerConfig.forEach( item => {
-      if( item.reg.test( location.pathname) ) routerData = Object.assign( item , { pathname : location.pathname });
+      if( item.reg.test(_location.pathname) ) routerData = Object.assign( item , { pathname : _location.pathname });
     })
     if( !routerData ) return;
     this.props.updateNowPageData( routerData )
@@ -67,8 +84,9 @@ let action = dispatch => {
             <Route path="/" render={() => {
               return <Redirect to="/index"/>
             }} />
-            </Switch>
+          </Switch>
           <MainNav/>
+          <ShopingCar/>
         </div>
       </Router>
     )

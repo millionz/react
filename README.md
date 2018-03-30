@@ -29,6 +29,10 @@ react-hot-loader : 热加载，局部刷新
 
 babel-preset-stage-0 : ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个
 
+babel-plugin-transform-runtime  为了支持es7 async await编译
+
+babel-preset-stage-3 : 为了支持es7 async await编译
+
 babel-preset-stage-1
 
 babel-preset-stage-2

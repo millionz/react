@@ -9,15 +9,19 @@ class MainHeader extends React.Component{
     this.backLastPageMethod = this.backLastPageMethod.bind( this );
   }
   componentWillMount(){
-    console.log( this )
+
   }
   backLastPageMethod(){
     window.history.back();
   }
   render(){
+
     return (
       <div className="m-mainHeader">
-        <button className="m-backLastPageBtn" onClick={ this.backLastPageMethod }>返回</button>
+        {
+          this.props.nowPageData.name == '默认页面' || this.props.nowPageData.name == '首页' ?
+          null : <button className="m-backLastPageBtn" onClick={ this.backLastPageMethod }>返回</button>
+        }
         <h3 className="m-pageTitle">{ this.props.nowPageData.name }</h3>
       </div>
     );
