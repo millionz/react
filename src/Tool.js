@@ -49,8 +49,13 @@ class Tool {
     return data
   }
 
+  removeLocal( key ){
+    localStorage.removeItem( key )
+  }
+
 }
 
 export function request(){ return new Tool().request( ...arguments ) }
 export function setLocal(){ return new Tool().setLocal( ...arguments ) }
 export function getLocal(){ return new Tool().getLocal( ...arguments ) }
+export function removeLocal(){ return new Tool().removeLocal( ...arguments ) }

@@ -2,13 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Divider } from 'antd'
 import { connect } from 'react-redux'
-import { Descriptions  } from 'antd'
+import actions from '@/redux/actions'
+import { Descriptions, Button, message } from 'antd'
 class Workbench extends React.Component{
   constructor( props ){
     super( props );
+    this.loginOut = this.loginOut.bind( this )
   }
   componentWillMount(){
     // console.log( this.props.userInfo );
+  }
+  loginOut(){
+    this.props.loginOut()
+    this.props.history.push( '/login' )
+    message.success( '成功退出' )
+
   }
   render(){
     let userInfo = this.props.userInfo
@@ -25,9 +33,12 @@ class Workbench extends React.Component{
           </Descriptions>
           : null
         }
+        {
+          userInfo ? <Button type="danger" block onClick={ this.loginOut }>退出登录</Button> : null
+        }
       </div>
     )
   }
 }
 
-export default connect( state => state )( Workbench )
+export default connect( state => state , actions )( Workbench )

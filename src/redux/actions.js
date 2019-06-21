@@ -4,5 +4,8 @@ export default {
   },
   updateUserInfo( data ){
     return { type: 'UPDATE_USERINFO' , data }
+  },
+  loginOut(){
+    return { type: 'LOGIN_OUT' }
   }
 }
