@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class MainNav extends React.Component{
   constructor( props ){
@@ -7,22 +8,29 @@ class MainNav extends React.Component{
   }
   componentWillMount(){
     let NavConfig = [
-      { link : '/index' , name : '主页' },
-      { link : '/order' , name : '订单' },
-      { link : '/my' , name : '我的' }
+      { path : '/workbench' , name : '工作台' },
+      { path : '/undoList' , name : '代办' },
+      { path : '/doneList' , name : '已办' },
+      { path : '/messageList' , name : '通知' },
     ]
     this.setState({ 'NavConfig' : NavConfig })
   }
   render(){
-    let NavLinkDom = this.state.NavConfig.map( item => {
-      return( <Link key={ item.name } className="item" to={ item.link} >{ item.name }</Link> )
-    })
+
+    let NavLinkDom
+    let path = this.props.nowPage && this.props.nowPage.path ? this.props.nowPage.path : false
+
+    if( path ){
+      NavLinkDom = this.state.NavConfig.map( item => {
+       return( <Link key={ item.name } className={[ path == item.path ? 'item active' : 'item' ]} to={ item.path} >{ item.name }</Link> )
+     })
+    }
+
     let navDom = (
       <div className="m-mainNav">{ NavLinkDom }</div>
     )
-    return navDom;
+    return navDom
   }
 }
-
-
-export default MainNav;
+ 
+export default connect( state => state )( MainNav );

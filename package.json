@@ -4,7 +4,6 @@
   "description": "react-react",
   "author": "millionz",
   "scripts": {
-    "start": "node server.js",
     "dev": "webpack-dev-server --config webpack.config.js",
     "build": "webpack"
   },

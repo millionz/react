@@ -12,17 +12,19 @@ class MainHeader extends React.Component{
 
   }
   backLastPageMethod(){
+    
     window.history.back();
   }
   render(){
-
+    let name = this.props.nowPage && this.props.nowPage.name ? this.props.nowPage.name : false
     return (
       <div className="m-mainHeader">
         {
-          this.props.nowPageData.name == '默认页面' || this.props.nowPageData.name == '首页' ?
-          null : <button className="m-backLastPageBtn" onClick={ this.backLastPageMethod }>返回</button>
+          !name || name == '默认页面' || name == '工作台' ? null : <button className="m-backLastPageBtn" onClick={ this.backLastPageMethod }>返回</button>
         }
-        <h3 className="m-pageTitle">{ this.props.nowPageData.name }</h3>
+        {
+          name ? <h3 className="m-pageTitle">{ name }</h3> : null
+        }
       </div>
     );
   }
@@ -31,4 +33,4 @@ class MainHeader extends React.Component{
 
 
 
-export default MainHeader;
+export default connect( state => state )( MainHeader )

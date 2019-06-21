@@ -3,7 +3,13 @@ var webpack = require( 'webpack' );
 var CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 
 var ROOT_PATH = path.resolve(__dirname);
-var APP_PATH = path.resolve( ROOT_PATH , 'src' ); //__dirname 中的src目录，以此类推
+var APP_PATH = path.resolve( ROOT_PATH , 'src' ); //  src目录
+var VIEW_PATH = path.resolve( ROOT_PATH , 'src/view' ); //  src/view目录
+var COMPONENT_PATH = path.resolve( ROOT_PATH , 'src/components' ); // src/components
+var CONFIG_PATH = path.resolve( ROOT_PATH , 'src/config' ); //  src/config
+var ASSETS_PATH = path.resolve( ROOT_PATH , 'src/assets' ); //  src/assets
+
+
 var APP_FILE = path.resolve( APP_PATH , 'App.jsx' ); //根目录文件app.jsx地址
 var BUILD_PATH = path.resolve( ROOT_PATH , 'dist' ); //发布文件所存放的目录
 
@@ -29,7 +35,13 @@ module.exports = {
     extensions : [ '' , '.js' , '.jsx' , '.scss' ],
 
     //模块别名定义，方便后续直接引用别名，无须多写长长的地址
-    alias : { '@' : APP_PATH }
+    alias : {
+      '@' : APP_PATH,
+      'view': VIEW_PATH,
+      'components': COMPONENT_PATH,
+      'config': CONFIG_PATH,
+      'assets': ASSETS_PATH
+    }
 
   },
   module : {

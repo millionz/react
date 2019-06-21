@@ -2,7 +2,28 @@
 @charset "UTF-8";
 @import "_variable_method";
 
+#app{
+  height: 100%;
+}
 .g-main{
   position: relative;
-  padding-top: 35px;
+  height: 100%;
+
+  >div:nth-child(2){
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding-top: $mainHeaderHeight;
+    padding-bottom: $mainNavHeight;
+    overflow-y: auto;
+  }
+
+  .m-mainHeader{
+    z-index: 1;
+    position: relative;
+  }
+
 }

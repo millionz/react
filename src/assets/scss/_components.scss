@@ -23,6 +23,9 @@
       background: $Background;
       cursor: pointer;
     }
+    &.active{
+      color: $LightPrimary;
+    }
     &:nth-child(2){
       border-left: .5px solid $Border;
       border-right: 1px solid $Border;
@@ -39,6 +42,7 @@
   left: 0;
   width: 100%;
   line-height: $mainHeaderHeight;
+  border-bottom: 1px solid $Border;
   background: #fff;
   .m-backLastPageBtn{
     position: absolute;
@@ -49,82 +53,5 @@
   .m-pageTitle{
     text-align: center;
   }
-}
 
-
-//购物车
-.m-shopingCar{
-  z-index: 1;
-  position: fixed;
-  bottom: $mainNavHeight;
-  left: 0;
-  width: 100%;
-  &.showShopList{
-    .m-shopingCar-mask{
-      opacity: .5;
-      height: 100%;
-    }
-  }
-  .m-shopingCar-mask{
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background: #000;
-    transition: opacity .3s,height .1s;
-  }
-  .m-shopingCar-content{
-    position: relative;
-    padding:{
-      top: $space;
-      bottom: $space;
-    }
-    color: #fff;
-    background: $LightPrimary;
-    .m-shopingCar-shopList{
-      position: absolute;
-      width: 100%;
-      left: 0;
-      bottom: 0;
-    }
-    .m-shopingCar-ft{
-      @include clearfix;
-      .showShopListBtn{
-        display: inline-block;
-        float: left;
-        width: 35px;
-        margin-left: $space;
-        line-height: 35px;
-        border-radius: 50%;
-        border: 1px solid #fff;
-        text-align: center;
-        font-size: 12px;
-        cursor: pointer;
-      }
-      .nothing,
-      .allCost{
-        position: absolute;
-        left: 80px;
-        line-height: 35px;
-      }
-      .checkBtn{
-        display: block;
-        position: absolute;
-        right: $space;
-        top: 10px;
-        line-height: 25px;
-        padding: 5px 15px;
-        background: $Button;
-        border-radius: 5px;
-        border: 1px solid $Button;
-        cursor: pointer;
-        transition: border-color .2s;
-        &:hover{
-          border-color: #fff;
-        }
-      }
-    }
-  }
 }

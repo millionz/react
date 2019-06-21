@@ -1,28 +1,32 @@
+import { merge } from 'lodash'
+
 const initState = {
-  nowPage : { path : '/xxxx' , component : false , isExact : false , name : '默认页面' , reg : false },
-  userInfo : false,
-  shoppingCart : []
+  
+  nowPage: {},
+  userInfo : false
 }
+
 export default ( state = initState , action ) => {
+
   switch( action.type ){
 
     case 'UPDATE_NOWPAGE':
-      Object.assign( state.nowPage , action.data )
-      return { nowPage : state.nowPage };
+      let { nowpage } = state
+      nowpage = action.data
+      return {
+        ...state,
+        nowPage: { ...nowpage }
+      }
 
     case 'UPDATE_USERINFO':
-      Object.assign( state.userInfo , action.data );
-      return { userInfo : state.userInfo };
+      let { userInfo } = state
+      userInfo = action.data
+      return {
+        ...state,
+        userInfo: { ...userInfo }
+      }
 
-    case 'ADD_TO_CART':
-      state.shoppingCart = [ ...state.shoppingCart , action.data ];
-      return { shoppingCart : state.shoppingCart };
-
-    case 'DELETE_TO_CART':
-      state.shoppingCart = [...state.shoppingCart].splice( action.data , 1 );
-      return { shoppingCart : state.shoppingCart };
-
-    default: return state;
+    default: return state
 
   }
 }
