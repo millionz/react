@@ -17,13 +17,20 @@ import { map, find, merge } from 'lodash'
       nowPageData: {}
     }
     this.routerChange = this.routerChange.bind( this )
+    this.showHeader = this.showHeader.bind( this )
+    this.showNav = this.showNav.bind( this )
+
   }
 
-  componentWillMount() {
+  componentWillMount(){
+
     this.routerChange()
   }
 
   routerChange( nowPageData ){
+
+    if( !this.props.userInfo ) return window.location.href = '#/login'
+
     nowPageData = nowPageData ? nowPageData : {
       pathname :  window.location.hash.replace( '#' , '' )
     }
@@ -31,20 +38,33 @@ import { map, find, merge } from 'lodash'
     this.props.updateNowPage( _nowPageData )
   }
 
+  showHeader(){
+    return !this.props.nowPage.hideHeader
+  }
+
+  showNav(){
+    return !this.props.nowPage.hideNav
+  }
+
   render(){
+    let mainClassName = 'g-main'
+    if( !this.showHeader() ) mainClassName += ' hideHeader'
+    if( !this.showNav() ) mainClassName += ' hideNav'
     return(
       <HashRouter>
-        <div className="g-main">
+        <div className={ mainClassName }>
           <Prompt message={ this.routerChange }/>
-          <MainHeader/>
-          <Switch>
-            {
-              routerConfig.map( route => {
-                return <Route exact key={ route.name } path={ route.path } component={ route.component }/>
-              })
-            }
-          </Switch>
-          <MainNav/>
+          { this.showHeader() ? <MainHeader/> : null }
+          <div className="g-pagewrap">
+            <Switch>
+              {
+                routerConfig.map( route => {
+                  return <Route exact key={ route.name } path={ route.path } component={ route.component }/>
+                })
+              }
+            </Switch>
+          </div>
+          { this.showNav() ? <MainNav/> : null }
         </div>
       </HashRouter>
     )

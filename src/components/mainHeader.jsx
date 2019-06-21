@@ -6,13 +6,13 @@ class MainHeader extends React.Component{
 
   constructor( props ){
     super( props );
-    this.backLastPageMethod = this.backLastPageMethod.bind( this );
+    this.backLastPageMethod = this.backLastPageMethod.bind( this )
   }
   componentWillMount(){
 
   }
   backLastPageMethod(){
-    
+
     window.history.back();
   }
   render(){

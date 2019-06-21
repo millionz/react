@@ -5,9 +5,9 @@ import DoneList from 'view/doneList'
 import MessageList from 'view/messageList'
 
 export default [
-  { path: '/', name: '默认路由', component: Workbench },
-  { path: '/login', name: '登录', component: Login },
-  { path: '/workbench', name: '工作台', component: Workbench },
+  { path: '/', name: '默认路由', component: Workbench, hideHeader: true },
+  { path: '/login', name: '登录', component: Login, hideNav: true, hideHeader: true },
+  { path: '/workbench', name: '工作台', component: Workbench, hideHeader: true },
   { path: '/undoList', name: '代办列表', component: UndoList },
   { path: '/doneList', name: '已办列表', component: DoneList },
   { path: '/messageList', name: '通知消息列表', component: MessageList }

@@ -1,67 +1,56 @@
-/*
-  模块名称 : Tool
-  说明 : 工具类，包含功能：数据类型判断、对象转成URL参数字符串、AJAX
-  使用方法 :
-  import Tool from '@/Tool'
-  Tool.方法名称 ，例如 Tool.get( param )
-*/
+import { isObject, isArray } from 'lodash'
+
+import axios from 'axios'
+
+// 添加请求拦截器
+axios.interceptors.request.use(function( config ){
+  // 在发送请求之前做些什么
+  return config;
+}, function (error){
+  // 对请求错误做些什么
+  return Promise.reject(error)
+})
+
+// 添加响应拦截器
+axios.interceptors.response.use(function( response ){
+  // 对响应数据做点什么
+  return response.data
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error)
+})
+
+//前缀
+axios.defaults.baseURL = 'http://173.100.1.70:8080'
+
 
 class Tool {
-  constructor( param ){
-    this.param = param;
+
+  constructor(){
+
   }
-  typeJudge( type , param ){
-    let typeString = Object.prototype.toString.call( param );
-    typeString = typeString.split(' ')[1].replace( ']' , '' );
-    return typeString == type;
+
+  request( method = 'get', url = 'xxxx', data ){
+    return axios[ method ]( url , data )
   }
-  isObject( param ){
-    return this.typeJudge( 'Object' , param );
+
+  setLocal( key , data ){
+    localStorage[ key ] = JSON.stringify( data )
   }
-  isArray( param ){
-    return this.typeJudge( 'Array' , param );
-  }
-  isNumber( param ){
-    return this.typeJudge( 'Number' , param );
-  }
-  isString( param ){
-    return this.typeJudge( 'String' , param );
-  }
-  isBoolean( param ){
-    return this.typeJudge( 'Boolean' , param );
-  }
-  getURLparamFromObj( obj ){
-    if( !this.isObject(obj) ) return '';
-    let str = '?'
-    for( let x in obj ){
-      str += x + '=' + obj[x] + '&'
+
+  getLocal( key ){
+    let data = localStorage[ key ]
+    if( String(data) == 'null' || String(data) == 'undefined' ) return undefined
+    try{
+      if( isObject(JSON.parse(data)) || isArray(JSON.parse(data)) ) data = JSON.parse( data )
+    }catch(e){
+      localStorage.removeItem( 'userInfo' )
     }
-    return str.replace( /&$/g , '' );
+    return data
   }
-  ajax( type , url , param ){
-    return new Promise(( resolve, reject ) => {
-      let xhr = new XMLHttpRequest();
-      xhr.open( type , url , false )
-      xhr.addEventListener( 'load' , res => {
-        let status = xhr.status;
-        if( (status >= 200 && status < 300) || xhr.status == 304 ){
-          let result = xhr.responseText;
-          if( JSON.parse(result) ) result = JSON.parse(result);
-          resolve( result , this )
-        }else{
-          reject({ status : status , error : xhr.responseText })
-        }
-      })
-      xhr.send( null )
-    })
-  }
-  get( url , param ){
-    let _url = url;
-    if( param ) _url += this.getURLparamFromObj( param );
-    return this.ajax( 'GET' , _url );
-  }
-  post( url , param ){
-    return this.ajax( 'POST' , url , param );
-  }
+
 }
-export default new Tool();
+
+export function request(){ return new Tool().request( ...arguments ) }
+export function setLocal(){ return new Tool().setLocal( ...arguments ) }
+export function getLocal(){ return new Tool().getLocal( ...arguments ) }

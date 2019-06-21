@@ -60,7 +60,7 @@ module.exports = {
         loader : 'babel?presets[]=react,presets[]=es2015'
       },
       {
-        test : /\.scss$/,
+        test : /\.scss|css$/,
         loader : 'style!css!sass'
       },
       {
@@ -70,7 +70,9 @@ module.exports = {
       {
         test : /\.jpg$/,
         loader : 'url-loader?mimetype=image/jpg'
-      }
+      },
+
+
     ]
   },
   plugins : [

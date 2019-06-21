@@ -6,10 +6,9 @@
   height: 100%;
 }
 .g-main{
-  position: relative;
   height: 100%;
 
-  >div:nth-child(2){
+  .g-pagewrap{
     box-sizing: border-box;
     position: absolute;
     top: 0;
@@ -20,6 +19,19 @@
     padding-bottom: $mainNavHeight;
     overflow-y: auto;
   }
+
+  &.hideHeader{
+    .g-pagewrap{
+      padding-top: 0;
+    }
+  }
+
+  &.hideNav{
+    .g-pagewrap{
+      padding-bottom: 0;
+    }
+  }
+
 
   .m-mainHeader{
     z-index: 1;

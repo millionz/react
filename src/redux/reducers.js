@@ -1,9 +1,9 @@
-import { merge } from 'lodash'
+import { setLocal , getLocal } from '@/Tool'
 
+console.log( getLocal( 'userInfo' ) )
 const initState = {
-  
   nowPage: {},
-  userInfo : false
+  userInfo : getLocal( 'userInfo' ) || false
 }
 
 export default ( state = initState , action ) => {
@@ -21,6 +21,7 @@ export default ( state = initState , action ) => {
     case 'UPDATE_USERINFO':
       let { userInfo } = state
       userInfo = action.data
+      setLocal( 'userInfo' , userInfo )
       return {
         ...state,
         userInfo: { ...userInfo }
