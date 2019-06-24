@@ -82,7 +82,7 @@ module.exports = {
       { from : path.resolve( APP_PATH , 'assets/img' ) , to : path.resolve( BUILD_PATH , 'assets/img' ) },
       { from : path.resolve( APP_PATH , 'assets/json' ) , to : path.resolve( BUILD_PATH , 'assets/json' ) }
     ]),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
   //webpack-dev-server配置
